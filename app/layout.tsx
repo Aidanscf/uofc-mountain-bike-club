@@ -26,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "UofC Mountain Bike Club",
     description:
-      "Animated University of Calgary Mountain Bike Club site for rides, trail gallery, membership, and weekly shreds across Calgary and the Rockies.",
+      "Animated University of Calgary Mountain Bike Club site for past rides, trail gallery, benefits, sponsors, and $10 membership details.",
     metadataBase: new URL(origin),
     icons: {
       icon: "/favicon.jpg",
@@ -35,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: "UofC Mountain Bike Club",
       description:
-        "Join the Calgary Shred Pack for weekly rides, clinics, shuttles, and Rocky Mountain trail days.",
+        "Join the Rocky Mountain based UofC MTB club for rides, clinics, sponsors, benefits, and trail community.",
       type: "website",
       images: [
         {
@@ -50,7 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "UofC Mountain Bike Club",
       description:
-        "Weekly UCalgary MTB rides, clinics, shuttles, and trail community across Calgary and the Rockies.",
+        "Past rides, club benefits, sponsors, and $10 membership details for UCalgary MTB.",
       images: [imageUrl],
     },
   };

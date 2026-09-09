@@ -3,7 +3,6 @@
 import {
   ArrowRight,
   Bike,
-  CalendarDays,
   Check,
   ChevronDown,
   CircleUserRound,
@@ -23,18 +22,20 @@ import {
   Users,
   X,
 } from "lucide-react";
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+
+const joinUrl = "https://linktr.ee/uofc_mtb";
 
 const navItems = [
-  { label: "Rides & Shreds", href: "#schedule" },
+  { label: "Past Rides", href: "#schedule" },
   { label: "Trail Gallery", href: "#gallery" },
-  { label: "The Fleet & Gear", href: "#membership" },
+  { label: "About & Benefits", href: "#membership" },
   { label: "Join The Pack", href: "#signup-form" },
 ];
 
 const stats = [
-  { value: "450+", label: "Active Riders" },
-  { value: "24", label: "Group Shreds / Yr" },
+  { value: "60+", label: "Active Riders" },
+  { value: "24", label: "Past Ride Recaps" },
   { value: "3", label: "Bike Clinics" },
   { value: "#1", label: "Legendary Mascot", featured: true },
 ];
@@ -42,73 +43,73 @@ const stats = [
 const rides = [
   {
     id: "twilight",
-    day: "Wednesday Twilight",
-    time: "6:00 PM",
+    day: "Fall 2025",
+    time: "Twilight",
     title: "Bragg Creek Twilight Laps & Bragging Rights",
     body:
-      "Fast, flowy singletrack along Ranger Summit and Strange Brew followed by trailhead burritos. Headlights required for final descents.",
+      "Fast, flowy singletrack along Ranger Summit and Strange Brew followed by trailhead burritos and sunset photos from the lot.",
     level: "Blue Square / Intermediate",
     tone: "gold",
     icon: Bike,
     lead: "Sarah \"Crank\" M.",
     metricA: "Elevation gain: +420m",
     metricB: "Distance: 16.4 km",
-    action: "Instant RSVP (18/25)",
-    confirmed: "RSVP Confirmed",
+    action: "View Recap",
+    confirmed: "Recap Opened",
     className: "ride-card-wide tilt-left",
     path: "M0 38 Q 40 38, 70 20 T 140 10 T 210 28 T 260 5 L 300 35",
   },
   {
     id: "clinic",
-    day: "Thursday",
-    time: "6:30 PM",
+    day: "Winter 2026",
+    time: "Clinic Night",
     title: "Campus Wrench & Tubeless Clinic",
     body:
-      "Learn derailleur indexing, brake bleeding, and tubeless plugging at the UCalgary Kinesiology B outdoor shop.",
+      "Members learned derailleur indexing, brake bleeding, tubeless plugging, and trailside fixes at the UCalgary Outdoor Centre shop.",
     level: "Free for members",
     tone: "neutral",
     icon: Hammer,
     lead: "Outdoor Centre Shop",
     metricA: "Capacity: 15 spots max",
     metricB: "Loaner stands ready",
-    action: "Reserve Spot",
-    confirmed: "Spot Reserved",
+    action: "View Recap",
+    confirmed: "Recap Opened",
     className: "ride-card-small tilt-right",
     path: "M0 32 Q 60 10, 115 22 T 210 16 T 300 28",
   },
   {
     id: "moose",
-    day: "Saturday",
-    time: "8:30 AM",
+    day: "Summer 2025",
+    time: "Shuttle Day",
     title: "Moose Mountain Downhill Gravity Shuttle",
     body:
-      "Full-face helmets, knee pads, and send-it attitude mandatory. Shuttles run Moose Mountain road for Jean-Guy, Toothless, and T-Rex laps.",
+      "A full day of Moose Mountain shuttle laps with full-face helmets, knee pads, Jean-Guy, Toothless, and T-Rex descents.",
     level: "Double Black Diamond",
     tone: "red",
     icon: Truck,
     lead: "Dave & Tyler",
     metricA: "Vertical drop: -1,850m",
     metricB: "Run count: 5 laps",
-    action: "Grab Shuttle Seat",
-    confirmed: "Waitlist Joined",
+    action: "View Recap",
+    confirmed: "Recap Opened",
     className: "tilt-right-soft",
     path: "M0 8 Q 45 35, 88 18 T 172 8 T 250 24 T 300 6",
   },
   {
     id: "coffee",
-    day: "Sunday",
-    time: "10:00 AM",
+    day: "Spring 2026",
+    time: "Coffee Ride",
     title: "Canmore Nordic Centre Coffee & Flow",
     body:
-      "Relaxed pace, zero drops left behind. Smooth berms, vista photo stops, and post-ride espresso in downtown Canmore.",
+      "A beginner-friendly Canmore Nordic loop with smooth berms, mountain vista photo stops, and post-ride espresso downtown.",
     level: "Green Circle / Beginner Friendly",
     tone: "gold",
     icon: Coffee,
     lead: "Maya K.",
     metricA: "Elevation: +180m",
     metricB: "Distance: 11.2 km",
-    action: "Instant RSVP (12/30)",
-    confirmed: "RSVP Confirmed",
+    action: "View Recap",
+    confirmed: "Recap Opened",
     className: "tilt-left-soft",
     path: "M0 25 Q 75 15, 150 18 T 300 20",
   },
@@ -154,50 +155,32 @@ const gallery = [
   },
 ];
 
-const tiers = [
+const benefits = [
   {
-    id: "cruiser",
-    name: "Campus Cruiser",
-    badge: "Entry",
-    price: "$25",
-    description: "Ideal for campus commuters and casual weekend singletrack riders.",
-    features: [
-      "Weekend social trail rides",
-      "Club vinyl sticker pack",
-      "10% off service at Bow Cycle",
-    ],
-    action: "Select Cruiser",
+    title: "Ride Community",
+    badge: "No Drop",
+    description:
+      "Meet riders across campus, find trail partners, and plug into casual group rides without needing to know anyone first.",
+    points: ["Beginner-friendly loops", "Intermediate trail crews", "Discord ride planning"],
   },
   {
-    id: "shredder",
-    name: "Alpine Shredder",
-    badge: "Most Popular",
-    price: "$45",
+    title: "Skills & Wrench Nights",
+    badge: "Learn",
     description:
-      "The sweet spot: exclusive UCalgary MTB tech jersey, free shuttles, and event entries.",
-    features: [
-      "Official UCalgary MTB club custom jersey",
-      "2 free Moose Mtn shuttle passes",
-      "Unlimited Wrench Night tool access",
-      "Tailgate BBQ hospitality",
-    ],
-    action: "Get Alpine Shredder",
+      "Build confidence on the bike and in the shop with clinics covering trail technique, tubeless repairs, brakes, and drivetrain basics.",
+    points: ["Campus repair nights", "Trailside repair practice", "Coaching from experienced members"],
     featured: true,
   },
   {
-    id: "racer",
-    name: "Enduro Racer",
-    badge: "Race Team",
-    price: "$70",
-    description: "For competitive racers chasing Alberta Cup and collegiate downhill points.",
-    features: [
-      "Collegiate race team license affiliation",
-      "Custom race number plate and speed suit discount",
-      "Weekly high-performance skills coaching",
-    ],
-    action: "Select Enduro Racer",
+    title: "Deals & Trail Days",
+    badge: "Perks",
+    description:
+      "Membership helps support club logistics, sponsor discounts, trail stewardship, and access to shared knowledge about local riding zones.",
+    points: ["Sponsor discounts", "Trail build opportunities", "Gear and route advice"],
   },
 ];
+
+const sponsors = ["Bow Cycle", "Ridley's Cycle", "The Bike Shop", "UCalgary Outdoor Centre"];
 
 const questions = [
   {
@@ -222,10 +205,8 @@ const galleryFilters = ["All Shreds", "Downhill / Freeride", "Flow & XC", "Socia
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All Shreds");
-  const [selectedTier, setSelectedTier] = useState("shredder");
   const [rideStates, setRideStates] = useState<Record<string, boolean>>({});
   const [openQuestion, setOpenQuestion] = useState(0);
-  const [formSent, setFormSent] = useState(false);
   const [activeSection, setActiveSection] = useState("#schedule");
 
   useEffect(() => {
@@ -274,16 +255,6 @@ export default function Home() {
     return gallery.filter((item) => item.category === activeFilter);
   }, [activeFilter]);
 
-  function selectTier(tier: string) {
-    setSelectedTier(tier);
-    document.getElementById("signup-form")?.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
-
-  function submitForm(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setFormSent(true);
-  }
-
   return (
     <>
       <header className="site-header">
@@ -294,13 +265,12 @@ export default function Home() {
               <span>
                 <strong>UofC</strong> MTB Club
               </span>
-              <small>Calgary Shred Pack</small>
             </span>
           </a>
 
           <span className="established-badge">
-            <Sparkles size={15} />
-            Est. 1994 / YYC
+            <ShieldCheck size={15} />
+            SU Certified
           </span>
 
           <nav className="desktop-nav" aria-label="Primary navigation">
@@ -320,7 +290,7 @@ export default function Home() {
               <span className="live-dot" />
               <span>Moose Mtn: Primed</span>
             </div>
-            <a className="btn btn-primary compact" href="#signup-form">
+            <a className="btn btn-primary compact" href={joinUrl} target="_blank" rel="noreferrer">
               <Users size={17} />
               Join Club
             </a>
@@ -353,12 +323,12 @@ export default function Home() {
             <div className="hero-copy" data-reveal>
               <div className="badge-row">
                 <span className="sticker sticker-gold">
-                  <Flag size={15} />
-                  Est. 1994 / SU Certified
+                  <ShieldCheck size={15} />
+                  SU Certified
                 </span>
                 <span className="sticker sticker-red">
                   <Mountain size={15} />
-                  Rocky Mtn Certified Shred
+                  Rocky Mountain Based
                 </span>
                 <span className="sticker sticker-muted">
                   <ShieldCheck size={15} />
@@ -378,13 +348,13 @@ export default function Home() {
               </p>
 
               <div className="hero-actions">
-                <a className="btn btn-primary btn-large" href="#signup-form">
+                <a className="btn btn-primary btn-large" href={joinUrl} target="_blank" rel="noreferrer">
                   <Users size={20} />
-                  Join The Pack ($35/Yr)
+                  Join The Pack
                   <span>2026 Pass</span>
                 </a>
                 <a className="btn btn-secondary" href="#schedule">
-                  View Weekly Shreds
+                  View Past Rides
                   <ArrowRight size={18} />
                 </a>
               </div>
@@ -440,18 +410,18 @@ export default function Home() {
               <div>
                 <span className="section-kicker">
                   <Map size={14} />
-                  Singletrack Agenda
+                  Ride Scrapbook
                 </span>
-                <h2 id="schedule-title">Rides & Weekly Shreds</h2>
+                <h2 id="schedule-title">Past Rides</h2>
                 <p>
-                  From relaxed recovery river spins to rowdy double-black downhill drops.
-                  Pick your pace, RSVP, and meet at the MacEwan trailhead van or the trail lot.
+                  A look back at club rides, clinics, and trail days from Bragg Creek,
+                  Moose Mountain, Canmore, and campus wrench nights.
                 </p>
               </div>
               <div className="segmented" aria-label="Ride filters">
-                <button type="button">All Levels</button>
+                <button type="button">All Recaps</button>
                 <button type="button" className="selected">
-                  This Week (4)
+                  Recent Highlights
                 </button>
               </div>
             </div>
@@ -563,34 +533,56 @@ export default function Home() {
         <section className="section membership-section diagonal-band" id="membership" aria-labelledby="membership-title">
           <div className="container">
             <div className="center-heading" data-reveal>
-              <span className="section-kicker red">Season Membership 2026</span>
-              <h2 id="membership-title">Pick Your Pack Tier</h2>
+              <span className="section-kicker red">Club Membership / $10</span>
+              <h2 id="membership-title">About The Club & Member Benefits</h2>
               <p>
-                Every membership funds trail maintenance volunteer days with Bragg Creek
-                Trails and gets you rides, shuttle access, and local bike shop discounts.
+                UofC MTB is a student-led mountain bike community for riders who want
+                trail friends, skill progression, local route knowledge, and a reason to
+                get out into the Rockies.
               </p>
             </div>
 
-            <div className="tier-grid">
-              {tiers.map((tier, index) => (
+            <div className="club-info-grid" data-reveal>
+              <article className="about-card">
+                <span className="section-kicker gold">What We Are About</span>
+                <h3>Ride More, Learn More, Build The Local Trail Scene</h3>
+                <p>
+                  The club brings together UCalgary students and community riders for
+                  mountain bike rides, maintenance nights, trail stewardship, sponsor
+                  perks, and low-pressure ways to meet people who love dirt, bikes, and
+                  weekends outside.
+                </p>
+              </article>
+              <article className="fee-card" id="signup-form">
+                <span>Membership Fee</span>
+                <strong>$10</strong>
+                <p>
+                  One simple club fee for the season. Join through Linktree to get current
+                  sign-up details, club channels, and ride announcements.
+                </p>
+                <a className="btn btn-gold" href={joinUrl} target="_blank" rel="noreferrer">
+                  Join Through Linktree
+                  <ArrowRight size={18} />
+                </a>
+              </article>
+            </div>
+
+            <div className="benefit-grid">
+              {benefits.map((benefit, index) => (
                 <article
-                  className={`tier-card ${tier.featured ? "featured" : ""}`}
-                  key={tier.id}
+                  className={`benefit-card ${benefit.featured ? "featured" : ""}`}
+                  key={benefit.title}
                   data-reveal
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <div>
-                    <div className="tier-head">
-                      <h3>{tier.name}</h3>
-                      <span>{tier.badge}</span>
+                    <div className="benefit-head">
+                      <h3>{benefit.title}</h3>
+                      <span>{benefit.badge}</span>
                     </div>
-                    <div className="tier-price">
-                      <strong>{tier.price}</strong>
-                      <span>/ Season</span>
-                    </div>
-                    <p>{tier.description}</p>
+                    <p>{benefit.description}</p>
                     <ul>
-                      {tier.features.map((feature) => (
+                      {benefit.points.map((feature) => (
                         <li key={feature}>
                           <Check size={16} />
                           {feature}
@@ -598,66 +590,20 @@ export default function Home() {
                       ))}
                     </ul>
                   </div>
-                  <button
-                    className={tier.featured ? "btn btn-gold" : "btn btn-ghost"}
-                    type="button"
-                    onClick={() => selectTier(tier.id)}
-                  >
-                    {tier.action}
-                  </button>
                 </article>
               ))}
             </div>
 
-            <div className="signup-panel" id="signup-form" data-reveal>
-              <div className="signup-head">
-                <div>
-                  <span>Fast-track roster enrollment</span>
-                  <h3>Claim Your Jersey & Rider Badge</h3>
-                </div>
-                <p>
-                  <ShieldCheck size={16} />
-                  UCalgary students, alumni, and community welcome
-                </p>
+            <div className="sponsor-panel" data-reveal>
+              <div>
+                <span className="section-kicker gold">Club Sponsors</span>
+                <h3>Backed By Calgary Bike Shops & Campus Outdoor Support</h3>
               </div>
-
-              {formSent ? (
-                <div className="success-message" role="status">
-                  <Check size={24} />
-                  <div>
-                    <strong>Welcome to the pack.</strong>
-                    <span>Orientation ride details and Discord access are queued for your inbox.</span>
-                  </div>
-                </div>
-              ) : (
-                <form className="signup-form" onSubmit={submitForm}>
-                  <label>
-                    <span>UCalgary Email or Student ID</span>
-                    <input type="email" required placeholder="dino.rider@ucalgary.ca" />
-                  </label>
-                  <label>
-                    <span>Skill / Trail Comfort</span>
-                    <select defaultValue="blue">
-                      <option value="green">Green: beginner, gravel, flow</option>
-                      <option value="blue">Blue: intermediate singletrack</option>
-                      <option value="black">Black: technical roots</option>
-                      <option value="double-black">Double black: downhill drops</option>
-                    </select>
-                  </label>
-                  <label>
-                    <span>Membership Plan</span>
-                    <select value={selectedTier} onChange={(event) => setSelectedTier(event.target.value)}>
-                      <option value="cruiser">Campus Cruiser ($25)</option>
-                      <option value="shredder">Alpine Shredder ($45)</option>
-                      <option value="racer">Enduro Racer ($70)</option>
-                    </select>
-                  </label>
-                  <button className="btn btn-primary" type="submit">
-                    Send It
-                    <ArrowRight size={18} />
-                  </button>
-                </form>
-              )}
+              <div className="club-sponsor-grid">
+                {sponsors.map((sponsor) => (
+                  <span key={sponsor}>{sponsor}</span>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -728,7 +674,7 @@ export default function Home() {
             <h3>Rockies Stewardship</h3>
             <div className="footer-note">
               <Mountain size={18} />
-              <span>450+ volunteer hours committed each season to Bragg Creek trail repair.</span>
+              <span>Trail stewardship and volunteer days help keep Bragg Creek singletrack ride-ready.</span>
             </div>
           </div>
 
