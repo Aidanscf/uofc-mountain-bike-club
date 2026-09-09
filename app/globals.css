@@ -427,7 +427,7 @@ h3 {
 
 h1 {
   max-width: 720px;
-  font-size: clamp(42px, 7vw, 72px);
+  font-size: 72px;
   line-height: 0.9;
 }
 
@@ -567,7 +567,7 @@ h1 span::after {
 
 .callout {
   padding: 8px 10px;
-  font-size: clamp(16px, 2.4vw, 25px);
+  font-size: 25px;
   animation: stickerPop 3.1s ease-in-out infinite;
 }
 
@@ -669,7 +669,7 @@ h1 span::after {
 .center-heading h2,
 .faq-grid h2 {
   margin-top: 12px;
-  font-size: clamp(31px, 4vw, 44px);
+  font-size: 44px;
   line-height: 1.02;
 }
 
@@ -1169,7 +1169,7 @@ h1 span::after {
 .about-card h3,
 .sponsor-panel h3 {
   margin-top: 18px;
-  font-size: clamp(25px, 3vw, 34px);
+  font-size: 34px;
   line-height: 1.05;
 }
 
@@ -1210,7 +1210,7 @@ h1 span::after {
   display: block;
   color: var(--gold);
   font-family: var(--font-space-grotesk), sans-serif;
-  font-size: clamp(64px, 8vw, 96px);
+  font-size: 96px;
   line-height: 0.85;
 }
 
@@ -1760,21 +1760,19 @@ h1 span::after {
   }
 
   .mobile-nav {
-    display: grid;
-    grid-template-rows: 0fr;
+    display: flex;
+    flex-direction: column;
+    max-height: 0;
     overflow: hidden;
     width: min(1240px, calc(100% - 32px));
     margin: 0 auto;
-    transition: grid-template-rows 220ms ease;
+    opacity: 0;
+    transition: max-height 240ms ease, opacity 180ms ease;
   }
 
   .mobile-nav.open {
-    grid-template-rows: 1fr;
-  }
-
-  .mobile-nav::before {
-    content: "";
-    min-height: 0;
+    max-height: 260px;
+    opacity: 1;
   }
 
   .mobile-nav a {
@@ -1893,8 +1891,43 @@ h1 span::after {
     line-height: 0.94;
   }
 
+  .section-heading h2,
+  .center-heading h2,
+  .faq-grid h2 {
+    font-size: 31px;
+    line-height: 1.05;
+  }
+
+  .about-card h3,
+  .sponsor-panel h3 {
+    font-size: 25px;
+  }
+
   .hero-lede {
     font-size: 16px;
+  }
+
+  .badge-row,
+  .sticker,
+  .section-kicker,
+  .status-track,
+  .ride-topline,
+  .ride-chip,
+  .difficulty {
+    max-width: 100%;
+  }
+
+  .badge-row {
+    align-items: flex-start;
+  }
+
+  .sticker,
+  .section-kicker,
+  .ride-chip,
+  .difficulty {
+    width: fit-content;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .hero-actions,
@@ -1915,6 +1948,11 @@ h1 span::after {
   .btn,
   .btn-large {
     width: 100%;
+    min-height: 48px;
+    flex-wrap: wrap;
+    padding-block: 12px;
+    text-align: center;
+    line-height: 1.15;
   }
 
   .stats-grid,
@@ -1940,6 +1978,12 @@ h1 span::after {
     animation: none;
   }
 
+  .status-track {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    line-height: 1.35;
+  }
+
   .section {
     padding: 64px 0;
   }
@@ -1953,6 +1997,18 @@ h1 span::after {
     transform: rotate(0deg);
   }
 
+  .gallery-card,
+  .benefit-card,
+  .club-sponsor-grid span,
+  .footer-note {
+    transform: none !important;
+  }
+
+  .gallery-image span {
+    width: auto;
+    overflow-wrap: anywhere;
+  }
+
   .ride-footer {
     align-items: stretch;
     flex-direction: column;
@@ -1961,6 +2017,30 @@ h1 span::after {
   .elevation-box div {
     flex-direction: column;
     gap: 3px;
+  }
+
+  .about-card,
+  .fee-card,
+  .benefit-card,
+  .sponsor-panel,
+  .signup-panel {
+    padding: 18px;
+  }
+
+  .fee-card strong {
+    font-size: 72px;
+  }
+
+  .accordion-item button {
+    min-height: 64px;
+    padding-inline: 14px;
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .footer-bottom span {
+    align-items: flex-start;
+    line-height: 1.25;
   }
 
   .callout {
