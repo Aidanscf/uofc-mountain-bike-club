@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  turbopack: {
+    root: process.cwd(),
+  },
+  typescript: {
+    tsconfigPath: process.env.NETLIFY ? "tsconfig.netlify.json" : "tsconfig.json",
+  },
 };
 
 export default nextConfig;
