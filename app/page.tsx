@@ -645,39 +645,6 @@ export default function Home() {
       </main>
 
       <footer className="site-footer">
-        <div className="container footer-grid">
-          <div>
-            <div className="footer-brand">
-              <strong>UofC MTB</strong>
-              <span>Canmore / Bragg</span>
-            </div>
-            <p>
-              The official collegiate club ripping singletrack across Kananaskis, Bragg
-              Creek, and the Bow Valley. High-octane, dirt-first outdoor community.
-            </p>
-            <div className="sponsor-tags">
-              <span>SU Club Certified</span>
-              <span>IMBA Trail Crew</span>
-            </div>
-          </div>
-
-          <div>
-            <h3>Rockies Stewardship</h3>
-            <div className="footer-note">
-              <Mountain size={18} />
-              <span>Trail stewardship and volunteer days help keep Bragg Creek singletrack ride-ready.</span>
-            </div>
-          </div>
-
-          <div>
-            <h3>Crew Sponsors</h3>
-            <p>Members can get 15% off parts and select discounts on bike purchases.</p>
-            <div className="sponsor-tags">
-              <span>Ridley's Cycle</span>
-              <span>Inside Line</span>
-            </div>
-          </div>
-        </div>
         <div className="container footer-bottom">
           <span>
             <Flag size={18} />

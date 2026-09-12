@@ -42,6 +42,8 @@ test("server-renders the UofC MTB club site", async () => {
   assert.doesNotMatch(html, /—/);
   assert.doesNotMatch(html, /Campus Trailhead Hub|MacEwan Student Centre|Wrench Nights:|Lead:|Bow Cycle|The Bike Shop|7Mesh/i);
   assert.doesNotMatch(html, /club van transports|full-face helmet and knee guards/i);
+  assert.match(html, /Ride fast, leave no trace, watch out for Rex\./);
+  assert.doesNotMatch(html, /Rockies Stewardship|Crew Sponsors|IMBA Trail Crew|High-octane, dirt-first outdoor community/i);
   assert.doesNotMatch(html, /Your site is taking shape|codex-preview|react-loading-skeleton/i);
 });
 
