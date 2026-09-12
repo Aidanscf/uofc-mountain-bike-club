@@ -607,7 +607,6 @@ export default function Home() {
         <section className="section faq-section topo-section" id="faq" aria-labelledby="faq-title">
           <div className="container faq-grid">
             <div data-reveal>
-              <span className="section-kicker gold">No Drop Culture</span>
               <h2 id="faq-title">Ride Details Before Dropping In</h2>
               <p>
                 Twice a week, the club organizes group rides with skill-based splits,
