@@ -34,7 +34,14 @@ test("server-renders the UofC MTB club site", async () => {
   assert.match(html, /Past Rides/);
   assert.match(html, /About The Club &amp; Member Benefits/);
   assert.match(html, /Club Membership \/ \$10/);
+  assert.match(html, /Where do we ride twice a week\?/);
+  assert.match(html, /Ridley&#x27;s Cycle/);
+  assert.match(html, /Inside Line/);
+  assert.match(html, /15% off parts/);
   assert.match(html, /https:\/\/linktr\.ee\/uofc_mtb/);
+  assert.doesNotMatch(html, /—/);
+  assert.doesNotMatch(html, /Campus Trailhead Hub|MacEwan Student Centre|Wrench Nights:|Lead:|Bow Cycle|The Bike Shop|7Mesh/i);
+  assert.doesNotMatch(html, /club van transports|full-face helmet and knee guards/i);
   assert.doesNotMatch(html, /Your site is taking shape|codex-preview|react-loading-skeleton/i);
 });
 

@@ -51,7 +51,6 @@ const rides = [
     level: "Blue Square / Intermediate",
     tone: "gold",
     icon: Bike,
-    lead: "Sarah \"Crank\" M.",
     metricA: "Elevation gain: +420m",
     metricB: "Distance: 16.4 km",
     action: "View Recap",
@@ -69,7 +68,6 @@ const rides = [
     level: "Free for members",
     tone: "neutral",
     icon: Hammer,
-    lead: "Outdoor Centre Shop",
     metricA: "Capacity: 15 spots max",
     metricB: "Loaner stands ready",
     action: "View Recap",
@@ -83,11 +81,10 @@ const rides = [
     time: "Shuttle Day",
     title: "Moose Mountain Downhill Gravity Shuttle",
     body:
-      "A full day of Moose Mountain shuttle laps with full-face helmets, knee pads, Jean-Guy, Toothless, and T-Rex descents.",
+      "A full day of Moose Mountain shuttle laps with certified helmets, trail-ready setups, Jean-Guy, Toothless, and T-Rex descents.",
     level: "Double Black Diamond",
     tone: "red",
     icon: Truck,
-    lead: "Dave & Tyler",
     metricA: "Vertical drop: -1,850m",
     metricB: "Run count: 5 laps",
     action: "View Recap",
@@ -105,7 +102,6 @@ const rides = [
     level: "Green Circle / Beginner Friendly",
     tone: "gold",
     icon: Coffee,
-    lead: "Maya K.",
     metricA: "Elevation: +180m",
     metricB: "Distance: 11.2 km",
     action: "View Recap",
@@ -180,23 +176,23 @@ const benefits = [
   },
 ];
 
-const sponsors = ["Bow Cycle", "Ridley's Cycle", "The Bike Shop", "UCalgary Outdoor Centre"];
+const sponsors = ["Ridley's Cycle", "Inside Line"];
 
 const questions = [
   {
-    question: "Do I need a high-end bike to join group rides?",
+    question: "Where do we ride twice a week?",
     answer:
-      "Not at all. Sunday Coffee & Flow rides are tailored for beginner to intermediate riders on any functioning mountain bike or gravel rig. You can also rent trail-ready rigs at student rates through the UCalgary Outdoor Centre.",
+      "We split both weekly group rides by skill level so newer riders can cruise beginner-friendly loops while experienced riders head for faster blue and black trail options.",
   },
   {
-    question: "How does transportation to Bragg Creek and Canmore work?",
+    question: "Can I rent a bike or gear?",
     answer:
-      "We coordinate carpooling for every weekend ride through the club Discord. Drivers with hitch racks get gas compensated, and the club van transports up to 10 additional bikes for official trail days.",
+      "Yes. The UCalgary Outdoor Centre has bike rentals and other outdoor gear available, which makes it easier to try a ride before committing to your own setup.",
   },
   {
-    question: "What gear is mandatory for participation?",
+    question: "What gear and transportation do I need?",
     answer:
-      "A certified cycling helmet is non-negotiable for all events. Technical rides and Moose Mountain shuttles require a full-face helmet and knee guards. We keep some loaner armor at the Outdoor Centre.",
+      "A certified cycling helmet is required for every ride. Full-face helmets and knee pads are not required. We do not have a club van, so members use Discord to arrange carpools and coordinate who has rack space.",
   },
 ];
 
@@ -460,10 +456,6 @@ export default function Home() {
                       </svg>
                     </div>
                     <div className="ride-footer">
-                      <span className="ride-lead">
-                        <span className="lead-avatar">D</span>
-                        Lead: {ride.lead}
-                      </span>
                       <button
                         className={confirmed ? "btn btn-confirmed small" : "btn btn-primary small"}
                         type="button"
@@ -597,7 +589,11 @@ export default function Home() {
             <div className="sponsor-panel" data-reveal>
               <div>
                 <span className="section-kicker gold">Club Sponsors</span>
-                <h3>Backed By Calgary Bike Shops & Campus Outdoor Support</h3>
+                <h3>Backed By Local Bike Shops</h3>
+                <p>
+                  Members get 15% off parts and select discounts on bike purchases
+                  through participating club sponsors.
+                </p>
               </div>
               <div className="club-sponsor-grid">
                 {sponsors.map((sponsor) => (
@@ -612,10 +608,11 @@ export default function Home() {
           <div className="container faq-grid">
             <div data-reveal>
               <span className="section-kicker gold">No Drop Culture</span>
-              <h2 id="faq-title">Got Questions Before Dropping In?</h2>
+              <h2 id="faq-title">Ride Details Before Dropping In</h2>
               <p>
-                Whether you own a campus hardtail or a full downhill machine, the club is
-                built on stoke, inclusion, and getting everyone safely into the Rockies.
+                Twice a week, the club organizes group rides with skill-based splits,
+                practical rental options, and Discord planning for getting riders and
+                bikes to the trailhead.
               </p>
               <div className="karma-note">
                 <strong>Trail Karma Notice:</strong>
@@ -665,12 +662,6 @@ export default function Home() {
           </div>
 
           <div>
-            <h3>Campus Trailhead Hub</h3>
-            <p>MacEwan Student Centre Rm 248, University of Calgary</p>
-            <p>Wrench Nights: Wed 6:30 PM at Kinesiology B</p>
-          </div>
-
-          <div>
             <h3>Rockies Stewardship</h3>
             <div className="footer-note">
               <Mountain size={18} />
@@ -680,11 +671,10 @@ export default function Home() {
 
           <div>
             <h3>Crew Sponsors</h3>
-            <p>Proudly fueled by Calgary bike builders and Alberta gear shops.</p>
+            <p>Members can get 15% off parts and select discounts on bike purchases.</p>
             <div className="sponsor-tags">
-              <span>Bow Cycle</span>
-              <span>Ridley's</span>
-              <span>7Mesh YYC</span>
+              <span>Ridley's Cycle</span>
+              <span>Inside Line</span>
             </div>
           </div>
         </div>
