@@ -41,9 +41,9 @@ test("server-renders the UofC MTB club site", async () => {
   assert.match(html, /https:\/\/linktr\.ee\/uofc_mtb/);
   assert.match(html, /Join With Google Form/);
   assert.match(html, /docs\.google\.com\/forms\/d\/e\/1FAIpQLScfGCw4hAoz2O8UWbNbR8sQLgtSMdhIxOkEYxDeBWGCu4SKSA/);
-  assert.match(html, /More From The Club Roll/);
   assert.match(html, /\/member-gallery\/IMG-20260916-WA0000\.jpg/);
   assert.match(html, /\/member-gallery\/IMG-20260916-WA0008\.jpg/);
+  assert.doesNotMatch(html, /\/mockup-assets\/gallery-|Sending The Gap|Club Sticker Badge|Sunday Summit Laps|Post-Shred Burgers/i);
   assert.doesNotMatch(html, /—/);
   assert.doesNotMatch(html, /Campus Trailhead Hub|MacEwan Student Centre|Wrench Nights:|Lead:|Bow Cycle|The Bike Shop|7Mesh/i);
   assert.doesNotMatch(html, /club van transports|full-face helmet and knee guards/i);

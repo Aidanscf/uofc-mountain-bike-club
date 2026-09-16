@@ -8,7 +8,6 @@ import {
   CircleUserRound,
   CloudSun,
   Coffee,
-  Filter,
   Flag,
   Gauge,
   Hammer,
@@ -22,7 +21,7 @@ import {
   Users,
   X,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 const joinUrl = "https://linktr.ee/uofc_mtb";
 const membershipFormUrl =
@@ -110,46 +109,6 @@ const rides = [
     confirmed: "Recap Opened",
     className: "tilt-left-soft",
     path: "M0 25 Q 75 15, 150 18 T 300 20",
-  },
-];
-
-const gallery = [
-  {
-    id: "drop",
-    category: "Downhill / Freeride",
-    image: "/mockup-assets/gallery-drop.jpg",
-    label: "Moose Mtn: Toothless Drop",
-    title: "Sending The Gap",
-    meta: "Rider: Alex C. / Shot by Tyler",
-    tilt: "tilt-left-strong",
-  },
-  {
-    id: "emblem",
-    category: "Social & Tailgates",
-    image: "/mockup-assets/emblem.jpg",
-    label: "Official Emblem",
-    title: "Club Sticker Badge",
-    meta: "Stickered on 600+ bikes across Alberta",
-    tilt: "tilt-right-soft",
-    emblem: true,
-  },
-  {
-    id: "summit",
-    category: "Flow & XC",
-    image: "/mockup-assets/gallery-summit.jpg",
-    label: "Prairie View Summit Push",
-    title: "Sunday Summit Laps",
-    meta: "Elevation: 2,240m / 14 riders",
-    tilt: "tilt-left-soft",
-  },
-  {
-    id: "tailgate",
-    category: "Social & Tailgates",
-    image: "/mockup-assets/gallery-tailgate.jpg",
-    label: "Dino Tailgate BBQ",
-    title: "Post-Shred Burgers",
-    meta: "West Bragg parking lot social",
-    tilt: "tilt-right-strong",
   },
 ];
 
@@ -265,11 +224,8 @@ const questions = [
   },
 ];
 
-const galleryFilters = ["All Shreds", "Downhill / Freeride", "Flow & XC", "Social & Tailgates"];
-
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState("All Shreds");
   const [rideStates, setRideStates] = useState<Record<string, boolean>>({});
   const [openQuestion, setOpenQuestion] = useState(0);
   const [activeSection, setActiveSection] = useState("#schedule");
@@ -311,14 +267,6 @@ export default function Home() {
       sectionObserver.disconnect();
     };
   }, []);
-
-  const filteredGallery = useMemo(() => {
-    if (activeFilter === "All Shreds") {
-      return gallery;
-    }
-
-    return gallery.filter((item) => item.category === activeFilter);
-  }, [activeFilter]);
 
   return (
     <>
@@ -554,46 +502,9 @@ export default function Home() {
                 </span>
                 <h2 id="gallery-title">Trail Gallery & Moments</h2>
               </div>
-              <div className="filter-row" aria-label="Gallery filters">
-                <Filter size={16} aria-hidden="true" />
-                {galleryFilters.map((filter) => (
-                  <button
-                    key={filter}
-                    type="button"
-                    className={activeFilter === filter ? "active" : ""}
-                    onClick={() => setActiveFilter(filter)}
-                  >
-                    {filter}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="gallery-grid">
-              {filteredGallery.map((item, index) => (
-                <article
-                  className={`gallery-card ${item.tilt} ${item.emblem ? "emblem-card" : ""}`}
-                  key={item.id}
-                  data-reveal
-                  style={{ transitionDelay: `${index * 70}ms` }}
-                >
-                  <div className="gallery-image">
-                    <img src={item.image} alt={`${item.title}: ${item.label}`} />
-                    <span>{item.label}</span>
-                  </div>
-                  <div className="gallery-caption">
-                    <h3>{item.title}</h3>
-                    <p>{item.meta}</p>
-                  </div>
-                </article>
-              ))}
             </div>
 
             <div className="member-photo-wrap" data-reveal>
-              <div className="member-photo-heading">
-                <span className="section-kicker red">Member Photos</span>
-                <h3>More From The Club Roll</h3>
-              </div>
               <div className="member-photo-rail" aria-label="Member photo gallery">
                 {memberPhotos.map((item, index) => (
                   <article
