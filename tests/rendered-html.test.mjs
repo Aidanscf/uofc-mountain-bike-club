@@ -34,8 +34,11 @@ test("server-renders the UofC MTB club site", async () => {
   assert.match(html, /Mountain Bike Club/);
   assert.match(html, /Past Rides/);
   assert.match(html, /About The Club &amp; Member Benefits/);
-  assert.match(html, /Membership Fee/);
-  assert.match(html, /\$10/);
+  assert.match(html, /Club Membership \/ \$10/);
+  assert.match(html, /SU Certified/);
+  assert.match(html, /Rocky Mountain Based/);
+  assert.match(html, /Join The Club/);
+  assert.match(html, /Bike shop discounts through Ridley&#x27;s Cycle and Inside Line/);
   assert.match(html, /Where do we ride twice a week\?/);
   assert.match(html, /Ridley&#x27;s Cycle/);
   assert.match(html, /Inside Line/);
@@ -54,7 +57,7 @@ test("server-renders the UofC MTB club site", async () => {
   assert.match(html, /Faith healer/);
   assert.match(html, /Race Day/);
   assert.doesNotMatch(html, /mockup-assets|og\.png|favicon\.jpg|hero-rider|emblem|dinosaur|Dino|Rex|Mascot|Send It|Whoosh|Airtime|Sending The Gap|Club Sticker Badge|Sunday Summit Laps|Post-Shred Burgers/i);
-  assert.doesNotMatch(html, /SU Certified|Rides Posted In Discord|Rocky Mountain Based|YYC \/ Canmore \/ Bragg Creek|Official University of Calgary Club|All Recaps|Recent Highlights/i);
+  assert.doesNotMatch(html, /Certified helmets are required for all club rides/i);
   assert.doesNotMatch(html, /—/);
   assert.doesNotMatch(html, /Campus Trailhead Hub|MacEwan Student Centre|Wrench Nights:|Lead:|Bow Cycle|The Bike Shop|7Mesh/i);
   assert.doesNotMatch(html, /club van transports|full-face helmet and knee guards/i);
