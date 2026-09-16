@@ -39,6 +39,11 @@ test("server-renders the UofC MTB club site", async () => {
   assert.match(html, /Inside Line/);
   assert.match(html, /15% off parts/);
   assert.match(html, /https:\/\/linktr\.ee\/uofc_mtb/);
+  assert.match(html, /Join With Google Form/);
+  assert.match(html, /docs\.google\.com\/forms\/d\/e\/1FAIpQLScfGCw4hAoz2O8UWbNbR8sQLgtSMdhIxOkEYxDeBWGCu4SKSA/);
+  assert.match(html, /More From The Club Roll/);
+  assert.match(html, /\/member-gallery\/IMG-20260916-WA0000\.jpg/);
+  assert.match(html, /\/member-gallery\/IMG-20260916-WA0008\.jpg/);
   assert.doesNotMatch(html, /—/);
   assert.doesNotMatch(html, /Campus Trailhead Hub|MacEwan Student Centre|Wrench Nights:|Lead:|Bow Cycle|The Bike Shop|7Mesh/i);
   assert.doesNotMatch(html, /club van transports|full-face helmet and knee guards/i);
@@ -56,5 +61,7 @@ test("keeps mobile responsive safeguards in the product stylesheet", async () =>
   assert.match(css, /\.status-track\s*\{[\s\S]*flex-wrap:\s*wrap/);
   assert.match(css, /\.gallery-card,\s*\n\s*\.benefit-card,[\s\S]*transform:\s*none !important/);
   assert.match(css, /\.accordion-item button\s*\{[\s\S]*min-height:\s*64px/);
+  assert.match(css, /\.member-photo-rail\s*\{[\s\S]*overflow-x:\s*auto/);
+  assert.match(css, /\.member-photo-card\s*\{[\s\S]*scroll-snap-align:\s*start/);
   assert.doesNotMatch(css, /font-size:\s*[^;]*vw/);
 });

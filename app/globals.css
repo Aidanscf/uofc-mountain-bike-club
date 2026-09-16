@@ -999,6 +999,56 @@ h1 span::after {
   font-size: 13px;
 }
 
+.member-photo-wrap {
+  margin-top: 34px;
+}
+
+.member-photo-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.member-photo-heading h3 {
+  font-size: 26px;
+  line-height: 1.05;
+}
+
+.member-photo-rail {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 8px 8px 28px;
+  margin-inline: -8px;
+  scroll-padding-inline: 8px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.member-photo-rail::-webkit-scrollbar {
+  height: 12px;
+}
+
+.member-photo-rail::-webkit-scrollbar-track {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--surface-low);
+}
+
+.member-photo-rail::-webkit-scrollbar-thumb {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--gold);
+}
+
+.member-photo-card {
+  flex: 0 0 clamp(250px, 29vw, 340px);
+  scroll-snap-align: start;
+}
+
 .membership-section {
   background: var(--surface-mid);
 }
@@ -1828,6 +1878,7 @@ h1 span::after {
   }
 
   .section-heading,
+  .member-photo-heading,
   .signup-head,
   .footer-bottom {
     align-items: flex-start;
@@ -2007,6 +2058,29 @@ h1 span::after {
   .gallery-image span {
     width: auto;
     overflow-wrap: anywhere;
+  }
+
+  .member-photo-wrap {
+    margin-top: 26px;
+  }
+
+  .member-photo-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .member-photo-heading h3 {
+    font-size: 22px;
+  }
+
+  .member-photo-rail {
+    gap: 16px;
+    padding-bottom: 22px;
+  }
+
+  .member-photo-card {
+    flex-basis: min(82vw, 300px);
   }
 
   .ride-footer {

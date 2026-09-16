@@ -25,6 +25,8 @@ import {
 import { useEffect, useMemo, useState } from "react";
 
 const joinUrl = "https://linktr.ee/uofc_mtb";
+const membershipFormUrl =
+  "https://docs.google.com/forms/d/e/1FAIpQLScfGCw4hAoz2O8UWbNbR8sQLgtSMdhIxOkEYxDeBWGCu4SKSA/viewform?usp=sharing&ouid=104105104000242914276";
 
 const navItems = [
   { label: "Past Rides", href: "#schedule" },
@@ -147,6 +149,73 @@ const gallery = [
     label: "Dino Tailgate BBQ",
     title: "Post-Shred Burgers",
     meta: "West Bragg parking lot social",
+    tilt: "tilt-right-strong",
+  },
+];
+
+const memberPhotos = [
+  {
+    id: "club-photo-01",
+    image: "/member-gallery/IMG-20260916-WA0000.jpg",
+    label: "Club Ride",
+    title: "Trail Crew Rollout",
+    meta: "UofC MTB member photo",
+    tilt: "tilt-left-soft",
+  },
+  {
+    id: "club-photo-02",
+    image: "/member-gallery/IMG-20260916-WA0002.jpg",
+    label: "Ride Day",
+    title: "Singletrack Stop",
+    meta: "UofC MTB member photo",
+    tilt: "tilt-right-soft",
+  },
+  {
+    id: "club-photo-03",
+    image: "/member-gallery/IMG-20260916-WA0003.jpg",
+    label: "Group Ride",
+    title: "Mountain Bike Crew",
+    meta: "UofC MTB member photo",
+    tilt: "tilt-left-strong",
+  },
+  {
+    id: "club-photo-04",
+    image: "/member-gallery/IMG-20260916-WA0004.jpg",
+    label: "Trail Photo",
+    title: "Post-Ride Moment",
+    meta: "UofC MTB member photo",
+    tilt: "tilt-right-strong",
+  },
+  {
+    id: "club-photo-05",
+    image: "/member-gallery/IMG-20260916-WA0005.jpg",
+    label: "Campus Crew",
+    title: "Riders Outside",
+    meta: "UofC MTB member photo",
+    tilt: "tilt-left-soft",
+  },
+  {
+    id: "club-photo-06",
+    image: "/member-gallery/IMG-20260916-WA0006.jpg",
+    label: "Shred Day",
+    title: "Trailside Stop",
+    meta: "UofC MTB member photo",
+    tilt: "tilt-right-soft",
+  },
+  {
+    id: "club-photo-07",
+    image: "/member-gallery/IMG-20260916-WA0007.jpg",
+    label: "Ride Recap",
+    title: "Club Lap",
+    meta: "UofC MTB member photo",
+    tilt: "tilt-left-strong",
+  },
+  {
+    id: "club-photo-08",
+    image: "/member-gallery/IMG-20260916-WA0008.jpg",
+    label: "Member Photo",
+    title: "Trail Memory",
+    meta: "UofC MTB member photo",
     tilt: "tilt-right-strong",
   },
 ];
@@ -519,6 +588,31 @@ export default function Home() {
                 </article>
               ))}
             </div>
+
+            <div className="member-photo-wrap" data-reveal>
+              <div className="member-photo-heading">
+                <span className="section-kicker red">Member Photos</span>
+                <h3>More From The Club Roll</h3>
+              </div>
+              <div className="member-photo-rail" aria-label="Member photo gallery">
+                {memberPhotos.map((item, index) => (
+                  <article
+                    className={`gallery-card member-photo-card ${item.tilt}`}
+                    key={item.id}
+                    style={{ transitionDelay: `${index * 55}ms` }}
+                  >
+                    <div className="gallery-image">
+                      <img src={item.image} alt={`${item.title}: ${item.label}`} />
+                      <span>{item.label}</span>
+                    </div>
+                    <div className="gallery-caption">
+                      <h3>{item.title}</h3>
+                      <p>{item.meta}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -549,11 +643,11 @@ export default function Home() {
                 <span>Membership Fee</span>
                 <strong>$10</strong>
                 <p>
-                  One simple club fee for the season. Join through Linktree to get current
-                  sign-up details, club channels, and ride announcements.
+                  One simple club fee for the season. Use the club membership form to
+                  send your sign-up details and get connected.
                 </p>
-                <a className="btn btn-gold" href={joinUrl} target="_blank" rel="noreferrer">
-                  Join Through Linktree
+                <a className="btn btn-gold" href={membershipFormUrl} target="_blank" rel="noreferrer">
+                  Join With Google Form
                   <ArrowRight size={18} />
                 </a>
               </article>
