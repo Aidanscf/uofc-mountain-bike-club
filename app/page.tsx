@@ -5,17 +5,12 @@ import {
   Bike,
   Check,
   ChevronDown,
-  CircleUserRound,
   CloudSun,
   Coffee,
   Flag,
   Gauge,
   Hammer,
-  Map,
   Menu,
-  Mountain,
-  ShieldCheck,
-  Sparkles,
   Truck,
   Users,
   X,
@@ -28,8 +23,8 @@ const membershipFormUrl =
 
 const navItems = [
   { label: "Past Rides", href: "#schedule" },
-  { label: "Trail Gallery", href: "#gallery" },
-  { label: "About & Benefits", href: "#membership" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Benefits", href: "#membership" },
   { label: "Join Club", href: "#signup-form" },
 ];
 
@@ -279,11 +274,6 @@ export default function Home() {
             </span>
           </a>
 
-          <span className="established-badge">
-            <ShieldCheck size={15} />
-            SU Certified
-          </span>
-
           <nav className="desktop-nav" aria-label="Primary navigation">
             {navItems.map((item) => (
               <a
@@ -297,14 +287,6 @@ export default function Home() {
           </nav>
 
           <div className="header-actions">
-            <div className="trail-pill" aria-label="Moose Mountain status">
-              <span className="live-dot" />
-              <span>Rides Posted In Discord</span>
-            </div>
-            <a className="btn btn-primary compact" href={joinUrl} target="_blank" rel="noreferrer">
-              <Users size={17} />
-              Join Club
-            </a>
             <button
               className="icon-button"
               type="button"
@@ -313,9 +295,6 @@ export default function Home() {
             >
               {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
-            <div className="avatar" aria-hidden="true">
-              <CircleUserRound size={19} />
-            </div>
           </div>
         </div>
 
@@ -332,22 +311,6 @@ export default function Home() {
         <section className="hero-section topo-section" aria-labelledby="hero-title">
           <div className="container hero-grid">
             <div className="hero-copy" data-reveal>
-              <div className="badge-row">
-                <span className="sticker sticker-gold">
-                  <ShieldCheck size={15} />
-                  SU Certified
-                </span>
-                <span className="sticker sticker-red">
-                  <Mountain size={15} />
-                  Rocky Mountain Based
-                </span>
-                <span className="sticker sticker-muted">
-                  <ShieldCheck size={15} />
-                  YYC / Canmore / Bragg Creek
-                </span>
-              </div>
-
-              <span className="eyebrow">Official University of Calgary Club</span>
               <h1 id="hero-title">
                 University of Calgary
                 <span>Mountain Bike Club</span>
@@ -381,7 +344,6 @@ export default function Home() {
             </div>
 
             <div className="hero-info-card" data-reveal>
-              <span className="section-kicker gold">Club Info</span>
               <h2>What To Expect</h2>
               <div className="hero-info-list">
                 <span>Two weekly ride opportunities during the main riding season.</span>
@@ -414,21 +376,11 @@ export default function Home() {
           <div className="container">
             <div className="section-heading" data-reveal>
               <div>
-                <span className="section-kicker">
-                  <Map size={14} />
-                  Club Rides
-                </span>
                 <h2 id="schedule-title">Past Rides</h2>
                 <p>
                   Recent club rides, clinics, and trail days from Bragg Creek, Moose
                   Mountain, Canmore, and campus maintenance nights.
                 </p>
-              </div>
-              <div className="segmented" aria-label="Ride filters">
-                <button type="button">All Recaps</button>
-                <button type="button" className="selected">
-                  Recent Highlights
-                </button>
               </div>
             </div>
 
@@ -489,10 +441,6 @@ export default function Home() {
           <div className="container">
             <div className="section-heading" data-reveal>
               <div>
-                <span className="section-kicker gold">
-                  <Sparkles size={14} />
-                  Gallery
-                </span>
                 <h2 id="gallery-title">Club Photos</h2>
               </div>
             </div>
@@ -507,7 +455,6 @@ export default function Home() {
                   >
                     <div className="gallery-image">
                       <img src={item.image} alt={`${item.title}: ${item.label}`} />
-                      <span>{item.label}</span>
                     </div>
                     <div className="gallery-caption">
                       <h3>{item.title}</h3>
@@ -523,7 +470,6 @@ export default function Home() {
         <section className="section membership-section diagonal-band" id="membership" aria-labelledby="membership-title">
           <div className="container">
             <div className="center-heading" data-reveal>
-              <span className="section-kicker red">Club Membership / $10</span>
               <h2 id="membership-title">About The Club & Member Benefits</h2>
               <p>
                 UofC MTB is a student-led mountain bike community for riders who want
@@ -534,7 +480,6 @@ export default function Home() {
 
             <div className="club-info-grid" data-reveal>
               <article className="about-card">
-                <span className="section-kicker gold">About The Club</span>
                 <h3>Group Rides, Skills, And Local Trails</h3>
                 <p>
                   The club brings together UCalgary students and community riders for
@@ -585,7 +530,6 @@ export default function Home() {
 
             <div className="sponsor-panel" data-reveal>
               <div>
-                <span className="section-kicker gold">Club Sponsors</span>
                 <h3>Backed By Local Bike Shops</h3>
                 <p>
                   Members get 15% off parts and select discounts on bike purchases
