@@ -21,37 +21,27 @@ export async function generateMetadata(): Promise<Metadata> {
   const protocol =
     headerList.get("x-forwarded-proto") ?? (host.includes("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
-  const imageUrl = new URL("/og.png", origin).toString();
 
   return {
     title: "UofC Mountain Bike Club",
     description:
-      "Animated University of Calgary Mountain Bike Club site for past rides, trail gallery, benefits, sponsors, and $10 membership details.",
+      "University of Calgary Mountain Bike Club site for group rides, trail photos, membership, sponsors, and ride details.",
     metadataBase: new URL(origin),
     icons: {
-      icon: "/favicon.jpg",
-      shortcut: "/favicon.jpg",
+      icon: "/favicon.svg",
+      shortcut: "/favicon.svg",
     },
     openGraph: {
       title: "UofC Mountain Bike Club",
       description:
-        "Join the Rocky Mountain based UofC MTB club for rides, clinics, sponsors, benefits, and trail community.",
+        "Join the UofC MTB club for weekly rides, skills sessions, sponsor benefits, and local mountain bike community.",
       type: "website",
-      images: [
-        {
-          url: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: "UofC MTB Club social preview with dinosaur rider in the Rockies",
-        },
-      ],
     },
     twitter: {
-      card: "summary_large_image",
+      card: "summary",
       title: "UofC Mountain Bike Club",
       description:
-        "Past rides, club benefits, sponsors, and $10 membership details for UCalgary MTB.",
-      images: [imageUrl],
+        "Weekly rides, club benefits, sponsors, and $10 membership details for UCalgary MTB.",
     },
   };
 }

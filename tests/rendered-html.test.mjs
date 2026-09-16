@@ -30,7 +30,8 @@ test("server-renders the UofC MTB club site", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>UofC Mountain Bike Club<\/title>/i);
-  assert.match(html, /Send It With/);
+  assert.match(html, /University of Calgary/);
+  assert.match(html, /Mountain Bike Club/);
   assert.match(html, /Past Rides/);
   assert.match(html, /About The Club &amp; Member Benefits/);
   assert.match(html, /Club Membership \/ \$10/);
@@ -43,11 +44,19 @@ test("server-renders the UofC MTB club site", async () => {
   assert.match(html, /docs\.google\.com\/forms\/d\/e\/1FAIpQLScfGCw4hAoz2O8UWbNbR8sQLgtSMdhIxOkEYxDeBWGCu4SKSA/);
   assert.match(html, /\/member-gallery\/IMG-20260916-WA0000\.jpg/);
   assert.match(html, /\/member-gallery\/IMG-20260916-WA0008\.jpg/);
-  assert.doesNotMatch(html, /\/mockup-assets\/gallery-|Sending The Gap|Club Sticker Badge|Sunday Summit Laps|Post-Shred Burgers/i);
+  assert.match(html, /Camping in fernie/);
+  assert.match(html, /Razors Edge/);
+  assert.match(html, /Jewels Pass/);
+  assert.match(html, /Winter Ride/);
+  assert.match(html, /Canmore ride/);
+  assert.match(html, /Bike Park laps/);
+  assert.match(html, /Faith healer/);
+  assert.match(html, /Race Day/);
+  assert.doesNotMatch(html, /mockup-assets|og\.png|favicon\.jpg|hero-rider|emblem|dinosaur|Dino|Rex|Mascot|Send It|Whoosh|Airtime|Sending The Gap|Club Sticker Badge|Sunday Summit Laps|Post-Shred Burgers/i);
   assert.doesNotMatch(html, /—/);
   assert.doesNotMatch(html, /Campus Trailhead Hub|MacEwan Student Centre|Wrench Nights:|Lead:|Bow Cycle|The Bike Shop|7Mesh/i);
   assert.doesNotMatch(html, /club van transports|full-face helmet and knee guards/i);
-  assert.match(html, /Ride fast, leave no trace, watch out for Rex\./);
+  assert.match(html, /Ride fast, leave no trace\./);
   assert.doesNotMatch(html, /Rockies Stewardship|Crew Sponsors|IMBA Trail Crew|High-octane, dirt-first outdoor community/i);
   assert.doesNotMatch(html, /Your site is taking shape|codex-preview|react-loading-skeleton/i);
 });

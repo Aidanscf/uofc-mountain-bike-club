@@ -12,7 +12,6 @@ import {
   Gauge,
   Hammer,
   Map,
-  MapPin,
   Menu,
   Mountain,
   ShieldCheck,
@@ -31,14 +30,14 @@ const navItems = [
   { label: "Past Rides", href: "#schedule" },
   { label: "Trail Gallery", href: "#gallery" },
   { label: "About & Benefits", href: "#membership" },
-  { label: "Join The Pack", href: "#signup-form" },
+  { label: "Join Club", href: "#signup-form" },
 ];
 
 const stats = [
   { value: "60+", label: "Active Riders" },
-  { value: "24", label: "Past Ride Recaps" },
-  { value: "3", label: "Bike Clinics" },
-  { value: "#1", label: "Legendary Mascot", featured: true },
+  { value: "2", label: "Weekly Ride Options" },
+  { value: "$10", label: "Membership Fee" },
+  { value: "All", label: "Skill Levels", featured: true },
 ];
 
 const rides = [
@@ -46,9 +45,9 @@ const rides = [
     id: "twilight",
     day: "Fall 2025",
     time: "Twilight",
-    title: "Bragg Creek Twilight Laps & Bragging Rights",
+    title: "Bragg Creek Evening Ride",
     body:
-      "Fast, flowy singletrack along Ranger Summit and Strange Brew followed by trailhead burritos and sunset photos from the lot.",
+      "A West Bragg group ride with intermediate trail options, a relaxed regroup pace, and time to connect at the trailhead after the ride.",
     level: "Blue Square / Intermediate",
     tone: "gold",
     icon: Bike,
@@ -63,9 +62,9 @@ const rides = [
     id: "clinic",
     day: "Winter 2026",
     time: "Clinic Night",
-    title: "Campus Wrench & Tubeless Clinic",
+    title: "Campus Bike Maintenance Clinic",
     body:
-      "Members learned derailleur indexing, brake bleeding, tubeless plugging, and trailside fixes at the UCalgary Outdoor Centre shop.",
+      "A practical maintenance session covering tubeless setup, shifting, braking, and trailside repairs for members building confidence with their bikes.",
     level: "Free for members",
     tone: "neutral",
     icon: Hammer,
@@ -80,9 +79,9 @@ const rides = [
     id: "moose",
     day: "Summer 2025",
     time: "Shuttle Day",
-    title: "Moose Mountain Downhill Gravity Shuttle",
+    title: "Moose Mountain Ride Day",
     body:
-      "A full day of Moose Mountain shuttle laps with certified helmets, trail-ready setups, Jean-Guy, Toothless, and T-Rex descents.",
+      "An advanced ride day on Moose Mountain trails with certified helmets, trail-ready bikes, and route choices based on rider experience.",
     level: "Double Black Diamond",
     tone: "red",
     icon: Truck,
@@ -97,9 +96,9 @@ const rides = [
     id: "coffee",
     day: "Spring 2026",
     time: "Coffee Ride",
-    title: "Canmore Nordic Centre Coffee & Flow",
+    title: "Canmore Nordic Centre Ride",
     body:
-      "A beginner-friendly Canmore Nordic loop with smooth berms, mountain vista photo stops, and post-ride espresso downtown.",
+      "A beginner to intermediate Canmore loop with skill-level groups, planned regroup points, and an optional coffee stop after the ride.",
     level: "Green Circle / Beginner Friendly",
     tone: "gold",
     icon: Coffee,
@@ -116,64 +115,64 @@ const memberPhotos = [
   {
     id: "club-photo-01",
     image: "/member-gallery/IMG-20260916-WA0000.jpg",
-    label: "Club Ride",
-    title: "Trail Crew Rollout",
+    label: "Camping in fernie",
+    title: "Camping in fernie",
     meta: "UofC MTB member photo",
     tilt: "tilt-left-soft",
   },
   {
     id: "club-photo-02",
     image: "/member-gallery/IMG-20260916-WA0002.jpg",
-    label: "Ride Day",
-    title: "Singletrack Stop",
+    label: "Razors Edge",
+    title: "Razors Edge",
     meta: "UofC MTB member photo",
     tilt: "tilt-right-soft",
   },
   {
     id: "club-photo-03",
     image: "/member-gallery/IMG-20260916-WA0003.jpg",
-    label: "Group Ride",
-    title: "Mountain Bike Crew",
+    label: "Jewels Pass",
+    title: "Jewels Pass",
     meta: "UofC MTB member photo",
     tilt: "tilt-left-strong",
   },
   {
     id: "club-photo-04",
     image: "/member-gallery/IMG-20260916-WA0004.jpg",
-    label: "Trail Photo",
-    title: "Post-Ride Moment",
+    label: "Winter Ride",
+    title: "Winter Ride",
     meta: "UofC MTB member photo",
     tilt: "tilt-right-strong",
   },
   {
     id: "club-photo-05",
     image: "/member-gallery/IMG-20260916-WA0005.jpg",
-    label: "Campus Crew",
-    title: "Riders Outside",
+    label: "Canmore ride",
+    title: "Canmore ride",
     meta: "UofC MTB member photo",
     tilt: "tilt-left-soft",
   },
   {
     id: "club-photo-06",
     image: "/member-gallery/IMG-20260916-WA0006.jpg",
-    label: "Shred Day",
-    title: "Trailside Stop",
+    label: "Bike Park laps",
+    title: "Bike Park laps",
     meta: "UofC MTB member photo",
     tilt: "tilt-right-soft",
   },
   {
     id: "club-photo-07",
     image: "/member-gallery/IMG-20260916-WA0007.jpg",
-    label: "Ride Recap",
-    title: "Club Lap",
+    label: "Faith healer",
+    title: "Faith healer",
     meta: "UofC MTB member photo",
     tilt: "tilt-left-strong",
   },
   {
     id: "club-photo-08",
     image: "/member-gallery/IMG-20260916-WA0008.jpg",
-    label: "Member Photo",
-    title: "Trail Memory",
+    label: "Race Day",
+    title: "Race Day",
     meta: "UofC MTB member photo",
     tilt: "tilt-right-strong",
   },
@@ -184,22 +183,22 @@ const benefits = [
     title: "Ride Community",
     badge: "No Drop",
     description:
-      "Meet riders across campus, find trail partners, and plug into casual group rides without needing to know anyone first.",
-    points: ["Beginner-friendly loops", "Intermediate trail crews", "Discord ride planning"],
+      "Meet other UCalgary riders, find trail partners, and join group rides that are organized by ability level.",
+    points: ["Beginner-friendly options", "Intermediate and advanced groups", "Discord ride planning"],
   },
   {
     title: "Skills & Wrench Nights",
     badge: "Learn",
     description:
-      "Build confidence on the bike and in the shop with clinics covering trail technique, tubeless repairs, brakes, and drivetrain basics.",
-    points: ["Campus repair nights", "Trailside repair practice", "Coaching from experienced members"],
+      "Build confidence on the bike and in the shop with sessions covering trail technique and basic maintenance.",
+    points: ["Bike setup support", "Trailside repair practice", "Advice from experienced members"],
     featured: true,
   },
   {
     title: "Deals & Trail Days",
     badge: "Perks",
     description:
-      "Membership helps support club logistics, sponsor discounts, trail stewardship, and access to shared knowledge about local riding zones.",
+      "Membership supports club operations, sponsor discounts, trail days, and access to shared route knowledge.",
     points: ["Sponsor discounts", "Trail build opportunities", "Gear and route advice"],
   },
 ];
@@ -273,7 +272,6 @@ export default function Home() {
       <header className="site-header">
         <div className="header-inner">
           <a className="brand-lockup" href="#top" aria-label="UofC MTB Club home">
-            <img src="/mockup-assets/emblem.jpg" alt="" className="brand-mark" />
             <span className="brand-text">
               <span>
                 <strong>UofC</strong> MTB Club
@@ -301,7 +299,7 @@ export default function Home() {
           <div className="header-actions">
             <div className="trail-pill" aria-label="Moose Mountain status">
               <span className="live-dot" />
-              <span>Moose Mtn: Primed</span>
+              <span>Rides Posted In Discord</span>
             </div>
             <a className="btn btn-primary compact" href={joinUrl} target="_blank" rel="noreferrer">
               <Users size={17} />
@@ -351,20 +349,20 @@ export default function Home() {
 
               <span className="eyebrow">Official University of Calgary Club</span>
               <h1 id="hero-title">
-                Send It With
-                <span>The Dinos!</span>
+                University of Calgary
+                <span>Mountain Bike Club</span>
               </h1>
               <p className="hero-lede">
-                Ripping singletrack, gravity jumps, and twilight loops across Bragg Creek,
-                Moose Mountain, Kananaskis, and the Bow Valley. High-cadence outdoor
-                community for trail rookies, weekend riders, and collegiate racers.
+                A student-run club for riders of all abilities. We organize weekly group
+                rides, skills sessions, maintenance nights, trail days, and occasional
+                trips around Calgary, Bragg Creek, Canmore, Fernie, and nearby riding areas.
               </p>
 
               <div className="hero-actions">
                 <a className="btn btn-primary btn-large" href={joinUrl} target="_blank" rel="noreferrer">
                   <Users size={20} />
-                  Join The Pack
-                  <span>2026 Pass</span>
+                  Join The Club
+                  <span>$10</span>
                 </a>
                 <a className="btn btn-secondary" href="#schedule">
                   View Past Rides
@@ -382,19 +380,14 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="hero-art" data-reveal>
-              <div className="art-plate" />
-              <div className="mascot-card">
-                <img
-                  src="/mockup-assets/hero-rider.jpg"
-                  alt="Cartoon UofC dinosaur mascot riding a mountain bike through a Rocky Mountain trail"
-                />
-                <span className="callout callout-red">Whoosh!</span>
-                <span className="callout callout-gold">Airtime!</span>
-                <span className="location-tag">
-                  <MapPin size={13} />
-                  Moose Mtn Ridge Run
-                </span>
+            <div className="hero-info-card" data-reveal>
+              <span className="section-kicker gold">Club Info</span>
+              <h2>What To Expect</h2>
+              <div className="hero-info-list">
+                <span>Two weekly ride opportunities during the main riding season.</span>
+                <span>Groups split by skill level so riders can choose the right pace.</span>
+                <span>Bike rentals are available through the UCalgary Outdoor Centre.</span>
+                <span>Certified helmets are required for all club rides.</span>
               </div>
             </div>
           </div>
@@ -404,15 +397,15 @@ export default function Home() {
           <div className="container status-inner">
             <div className="status-track">
               <Gauge size={17} />
-              <strong>Live trail status feed:</strong>
+              <strong>Ride updates:</strong>
               <span>
-                West Bragg Creek dry and buffed / Moose Mountain shuttles running Sat 9 AM /
-                Canmore Nordic firm / Nose Hill after-class laps open
+                Ride plans, meeting points, and carpooling are coordinated through Discord.
+                Check the club channels before each ride.
               </span>
             </div>
             <div className="weather">
               <CloudSun size={16} />
-              18 C / Calgary Rockies Sunny
+              Calgary / Bragg Creek / Canmore
             </div>
           </div>
         </div>
@@ -423,12 +416,12 @@ export default function Home() {
               <div>
                 <span className="section-kicker">
                   <Map size={14} />
-                  Ride Scrapbook
+                  Club Rides
                 </span>
                 <h2 id="schedule-title">Past Rides</h2>
                 <p>
-                  A look back at club rides, clinics, and trail days from Bragg Creek,
-                  Moose Mountain, Canmore, and campus wrench nights.
+                  Recent club rides, clinics, and trail days from Bragg Creek, Moose
+                  Mountain, Canmore, and campus maintenance nights.
                 </p>
               </div>
               <div className="segmented" aria-label="Ride filters">
@@ -498,9 +491,9 @@ export default function Home() {
               <div>
                 <span className="section-kicker gold">
                   <Sparkles size={14} />
-                  Field Dispatches
+                  Gallery
                 </span>
-                <h2 id="gallery-title">Trail Gallery & Moments</h2>
+                <h2 id="gallery-title">Club Photos</h2>
               </div>
             </div>
 
@@ -534,20 +527,19 @@ export default function Home() {
               <h2 id="membership-title">About The Club & Member Benefits</h2>
               <p>
                 UofC MTB is a student-led mountain bike community for riders who want
-                trail friends, skill progression, local route knowledge, and a reason to
-                get out into the Rockies.
+                group rides, skill progression, local route knowledge, and a way to meet
+                other riders on campus.
               </p>
             </div>
 
             <div className="club-info-grid" data-reveal>
               <article className="about-card">
-                <span className="section-kicker gold">What We Are About</span>
-                <h3>Ride More, Learn More, Build The Local Trail Scene</h3>
+                <span className="section-kicker gold">About The Club</span>
+                <h3>Group Rides, Skills, And Local Trails</h3>
                 <p>
                   The club brings together UCalgary students and community riders for
                   mountain bike rides, maintenance nights, trail stewardship, sponsor
-                  perks, and low-pressure ways to meet people who love dirt, bikes, and
-                  weekends outside.
+                  discounts, and local trip planning.
                 </p>
               </article>
               <article className="fee-card" id="signup-form">
@@ -612,17 +604,17 @@ export default function Home() {
         <section className="section faq-section topo-section" id="faq" aria-labelledby="faq-title">
           <div className="container faq-grid">
             <div data-reveal>
-              <h2 id="faq-title">Ride Details Before Dropping In</h2>
+              <h2 id="faq-title">Ride Details</h2>
               <p>
                 Twice a week, the club organizes group rides with skill-based splits,
                 practical rental options, and Discord planning for getting riders and
                 bikes to the trailhead.
               </p>
               <div className="karma-note">
-                <strong>Trail Karma Notice:</strong>
+                <strong>Trail Stewardship:</strong>
                 <span>
-                  Every member is invited to one BCCA trail build day per semester. Keep
-                  the singletrack clean and primed.
+                  Members are encouraged to take part in trail days and follow local
+                  trail rules so the riding areas we use stay open and well maintained.
                 </span>
               </div>
             </div>
@@ -652,7 +644,7 @@ export default function Home() {
         <div className="container footer-bottom">
           <span>
             <Flag size={18} />
-            Ride fast, leave no trace, watch out for Rex.
+            Ride fast, leave no trace.
           </span>
           <small>2026 University of Calgary MTB Club</small>
         </div>

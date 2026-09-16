@@ -111,12 +111,6 @@ main {
   transform: translateY(-2px) rotate(-1deg);
 }
 
-.brand-mark {
-  width: 39px;
-  height: 39px;
-  object-fit: contain;
-}
-
 .brand-text {
   display: flex;
   flex-direction: column;
@@ -519,84 +513,36 @@ h1 span::after {
   text-transform: uppercase;
 }
 
-.hero-art {
-  position: relative;
-}
-
-.art-plate {
-  position: absolute;
-  inset: 6% -4% 2% 4%;
-  border: 2px solid var(--ink);
-  border-radius: 16px;
-  background: color-mix(in srgb, var(--gold) 34%, transparent);
-  box-shadow: var(--shadow-big);
-  transform: rotate(-3deg);
-}
-
-.mascot-card {
-  position: relative;
-  overflow: hidden;
+.hero-info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px;
   border: 3px solid var(--ink);
-  border-radius: 10px;
+  border-radius: var(--radius);
   background: var(--surface-low);
   box-shadow: var(--shadow-big);
   transform: rotate(1deg);
-  transition: transform 260ms ease;
 }
 
-.mascot-card:hover {
-  transform: rotate(-1deg) translateY(-4px);
+.hero-info-card h2 {
+  font-size: 34px;
+  line-height: 1.05;
 }
 
-.mascot-card img {
-  width: 100%;
-  height: auto;
+.hero-info-list {
+  display: grid;
+  gap: 12px;
 }
 
-.callout,
-.location-tag {
-  position: absolute;
-  border: 2px solid var(--ink);
-  border-radius: 4px;
-  box-shadow: 3px 3px 0 var(--ink);
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-weight: 700;
-  letter-spacing: 0;
-  text-transform: uppercase;
-}
-
-.callout {
-  padding: 8px 10px;
-  font-size: 25px;
-  animation: stickerPop 3.1s ease-in-out infinite;
-}
-
-.callout-red {
-  top: 20px;
-  left: 18px;
-  background: var(--scarlet);
-  color: var(--white);
-  transform: rotate(-7deg);
-}
-
-.callout-gold {
-  right: 18px;
-  bottom: 22px;
-  background: var(--gold);
-  color: var(--ink);
-  transform: rotate(3deg);
-  animation-delay: 350ms;
-}
-
-.location-tag {
-  bottom: 18px;
-  left: 20px;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 6px 8px;
-  background: rgba(250, 249, 246, 0.94);
-  font-size: 10px;
+.hero-info-list span {
+  padding: 12px;
+  border: 2px solid rgba(28, 33, 32, 0.18);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--loam);
+  font-weight: 600;
+  line-height: 1.45;
 }
 
 .status-strip {
@@ -923,10 +869,6 @@ h1 span::after {
   box-shadow: var(--shadow-big);
 }
 
-.gallery-card.emblem-card {
-  background: var(--gold);
-}
-
 .gallery-image {
   position: relative;
   display: grid;
@@ -938,22 +880,11 @@ h1 span::after {
   background: var(--surface-low);
 }
 
-.gallery-card.emblem-card .gallery-image {
-  border-color: transparent;
-  background: transparent;
-}
-
 .gallery-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 550ms ease;
-}
-
-.emblem-card .gallery-image img {
-  width: 76%;
-  height: 76%;
-  object-fit: contain;
 }
 
 .gallery-card:hover img {
@@ -979,7 +910,6 @@ h1 span::after {
   text-transform: uppercase;
 }
 
-.emblem-card .gallery-image span,
 .gallery-card:nth-child(3) .gallery-image span {
   background: var(--gold);
   color: var(--ink);
@@ -1847,11 +1777,6 @@ h1 span::after {
     gap: 36px;
   }
 
-  .hero-art {
-    max-width: 590px;
-    margin-inline: auto;
-  }
-
   .stats-grid,
   .gallery-grid,
   .tier-grid,
@@ -1917,11 +1842,6 @@ h1 span::after {
 
   .header-inner {
     height: 72px;
-  }
-
-  .brand-mark {
-    width: 34px;
-    height: 34px;
   }
 
   .brand-text span {
@@ -2115,23 +2035,5 @@ h1 span::after {
   .footer-bottom span {
     align-items: flex-start;
     line-height: 1.25;
-  }
-
-  .callout {
-    font-size: 15px;
-  }
-
-  .callout-red {
-    top: 12px;
-    left: 12px;
-  }
-
-  .callout-gold {
-    right: 10px;
-    bottom: 14px;
-  }
-
-  .location-tag {
-    display: none;
   }
 }
