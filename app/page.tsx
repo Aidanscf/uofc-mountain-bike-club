@@ -13,8 +13,6 @@ import {
   Hammer,
   Map,
   Menu,
-  Mountain,
-  ShieldCheck,
   Sparkles,
   Truck,
   Users,
@@ -279,11 +277,6 @@ export default function Home() {
             </span>
           </a>
 
-          <span className="established-badge">
-            <ShieldCheck size={15} />
-            SU Certified
-          </span>
-
           <nav className="desktop-nav" aria-label="Primary navigation">
             {navItems.map((item) => (
               <a
@@ -332,21 +325,6 @@ export default function Home() {
         <section className="hero-section topo-section" aria-labelledby="hero-title">
           <div className="container hero-grid">
             <div className="hero-copy" data-reveal>
-              <div className="badge-row">
-                <span className="sticker sticker-gold">
-                  <ShieldCheck size={15} />
-                  SU Certified
-                </span>
-                <span className="sticker sticker-red">
-                  <Mountain size={15} />
-                  Rocky Mountain Based
-                </span>
-                <span className="sticker sticker-muted">
-                  <ShieldCheck size={15} />
-                  YYC / Canmore / Bragg Creek
-                </span>
-              </div>
-
               <span className="eyebrow">Official University of Calgary Club</span>
               <h1 id="hero-title">
                 University of Calgary
@@ -434,7 +412,6 @@ export default function Home() {
 
             <div className="rides-grid">
               {rides.map((ride, index) => {
-                const Icon = ride.icon;
                 const confirmed = rideStates[ride.id];
                 return (
                   <article
@@ -443,13 +420,6 @@ export default function Home() {
                     data-reveal
                     style={{ transitionDelay: `${index * 80}ms` }}
                   >
-                    <div className="ride-topline">
-                      <span className={`ride-chip ${ride.tone}`}>
-                        <Icon size={14} />
-                        {ride.day} / {ride.time}
-                      </span>
-                      <span className={`difficulty ${ride.tone}`}>{ride.level}</span>
-                    </div>
                     <h3>{ride.title}</h3>
                     <p>{ride.body}</p>
                     <div className="elevation-box">
